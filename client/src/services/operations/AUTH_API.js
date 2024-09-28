@@ -30,7 +30,6 @@ export const login = (email, password, navigate) => {
             localStorage.setItem("user", JSON.stringify(response.data.user));  
             localStorage.setItem("token", JSON.stringify(response.data.token)); 
 
-            navigate("/dashboard/my-profile");
         } catch (error) {
             console.log("LOGIN API ERROR............", error);
             toast.error(error?.response?.data?.message);
@@ -60,7 +59,7 @@ export const signup = (data, navigate) => {
         dispatch(setLoading(true));
         const toastId = toast.loading("loading...");
         const {  
-            role,
+            userType,
             firstName,
             lastName,
             email,
@@ -70,7 +69,7 @@ export const signup = (data, navigate) => {
         } = data;
         try {
             const response = await apiConnector("POST", endpoints.SIGNUP_API, 
-                { role, firstName, lastName, email, password, confirmPassword, otp } 
+                { userType, firstName, lastName, email, password, confirmPassword, otp } 
             )
 
             console.log("SIGNUP API RESPONSE............", response);

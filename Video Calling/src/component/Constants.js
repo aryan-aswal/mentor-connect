@@ -1,0 +1,2 @@
+export const AppID=225785757
+export const serversecret="15455836e0ce65de7325c835c53e5909"

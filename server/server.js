@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const fileUpload = require('express-fileupload');
 
 const userRouter = require('./routes/User');
-
+const mentorRouter = require('./routes/Mentor');
 require('dotenv').config();
 
 
@@ -21,6 +21,7 @@ app.use(fileUpload({
 }))
 
 app.use('/api/v1/auth', userRouter);
+app.use('/api/v1/mentor', mentorRouter);
 
 app.get('/', (req, res)=> {
     return res.status(200).json({

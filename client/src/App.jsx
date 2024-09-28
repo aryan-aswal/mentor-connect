@@ -10,15 +10,24 @@ import ForgotPassword from './pages/ForgotPassword'
 import Error from './pages/Error'
 import ResetPassword from './pages/ResetPassword'
 import Test from './pages/Test'
+import MentorApplicationForm from './pages/MentorApplicationForm'
+import CompletionPage from './pages/CompletionPage'
+import MentorDetailsPage from './pages/MentorDetailsPage'
+import AllMentors from './pages/AllMentors'
+import Navbar from './components/Navbar'
+import HomePage from './pages/HomePage'
+
 
 function App() {
     return (
-        <>
+        <div>
+            <Navbar></Navbar>
             <Routes>
                 <Route
                     path='/login'
                     element={
                         <OpenRoute>
+                            
                             <Login />
                         </OpenRoute>
                     } />
@@ -38,12 +47,26 @@ function App() {
                             <VerifyOtp />
                         </OpenRoute>
                     } />
+                <Route path='/apply-for-mentor' element={
+                    <PrivateRoute>
+                        <MentorApplicationForm />
+                    </PrivateRoute>
+                } />
+                <Route path='/mentor-applied' element={
+                    <PrivateRoute>
+                        <CompletionPage />
+                    </PrivateRoute>
+                } />
                 <Route path="/forgot-password" element={<ForgotPassword />} />
                 <Route path="/update-password/:token" element={<ResetPassword />} />
                 <Route path='/test' element={<Test />}></Route>
+                <Route path='/mentors' element={<AllMentors />}></Route>
+                <Route path='/mentor/:id' element={<MentorDetailsPage />}></Route>
+                <Route path={'/'} element={<HomePage />}></Route>
                 <Route path="*" element={<Error />} />
+
             </Routes>
-        </>
+        </div>
     )
 }
 
